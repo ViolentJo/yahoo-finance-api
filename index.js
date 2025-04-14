@@ -5,7 +5,7 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
-const symbols = ['EDP.LS', 'AIQ', 'QTUM', 'GNL'];
+const symbols = ['EDP.LS', 'AIQ', 'QTUM', 'GNL', 'EURUSD=X'];
 
 app.get('/api/stocks', async (req, res) => {
   try {
