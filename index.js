@@ -5,8 +5,11 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
-// Símbolos a seguir (ação + ETFs + câmbio EUR/USD)
-const symbols = ['EDP.LS', 'AIQ', 'QTUM', 'GNL', 'EURUSD=X'];
+// ✅ Todas as ações: principais + análise + EUR/USD
+const symbols = [
+  'EDP.LS', 'AIQ', 'QTUM', 'GNL', 'EURUSD=X',
+  'ENEL.MI', 'ISP.MI', 'NOS.LS', 'ORA.PA', 'VOD.L'
+];
 
 app.get('/api/stocks', async (req, res) => {
   try {
@@ -23,10 +26,8 @@ app.get('/api/stocks', async (req, res) => {
       })
     );
 
-    // Filtra os símbolos válidos
     const validQuotes = quotes.filter(q => q !== null);
 
-    // Resposta em JSON com os dados principais
     res.json(validQuotes.map(q => ({
       symbol: q.symbol,
       shortName: q.shortName,
@@ -38,7 +39,6 @@ app.get('/api/stocks', async (req, res) => {
   }
 });
 
-// Inicia servidor na porta 3000
 app.listen(3000, () => {
   console.log('✅ API a correr em http://localhost:3000');
 });
